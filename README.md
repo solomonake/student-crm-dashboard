@@ -1,6 +1,6 @@
 # Student CRM Dashboard
 
-**GitHub Repo:** [https://github.com/YOUR_USERNAME/student-crm-dashboard](https://github.com/YOUR_USERNAME/student-crm-dashboard)
+**GitHub Repo:** [https://github.com/solomonake/student-crm-dashboard](https://github.com/solomonake/student-crm-dashboard)
 
 A comprehensive Next.js application for managing student engagement, communication, and application progress at undergraduation.com. Built with TypeScript, Tailwind CSS, and Firebase integration.
 
