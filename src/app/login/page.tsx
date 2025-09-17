@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
+import { isDemoMode } from '@/lib/firebase';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -169,12 +170,24 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-            <h3 className="text-sm font-medium text-blue-900 mb-2">Demo Credentials</h3>
-            <p className="text-xs text-blue-700">
-              For demo purposes, you can create a new account or use any email/password combination.
-              <br />
-              <strong>Note:</strong> This is for demonstration only. In production, implement proper user management.
+          <div className={`mt-6 p-4 rounded-lg ${isDemoMode ? 'bg-green-50' : 'bg-blue-50'}`}>
+            <h3 className={`text-sm font-medium mb-2 ${isDemoMode ? 'text-green-900' : 'text-blue-900'}`}>
+              {isDemoMode ? 'Demo Mode Active' : 'Authentication Mode'}
+            </h3>
+            <p className={`text-xs ${isDemoMode ? 'text-green-700' : 'text-blue-700'}`}>
+              {isDemoMode ? (
+                <>
+                  <strong>Demo Mode:</strong> Any email/password combination will work.
+                  <br />
+                  <strong>Note:</strong> This bypasses Firebase Auth for quick testing.
+                </>
+              ) : (
+                <>
+                  <strong>Live Firebase Auth:</strong> Real authentication with your Firebase project.
+                  <br />
+                  <strong>Note:</strong> Requires valid Firebase configuration and user accounts.
+                </>
+              )}
             </p>
           </div>
         </div>

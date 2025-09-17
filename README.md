@@ -37,6 +37,7 @@ A comprehensive Next.js application for managing student engagement, communicati
 - Signup enabled for demo purposes
 - Logout supported from Navbar
 - Protected routes with automatic redirects
+- **Demo Mode**: Bypass authentication for quick testing
 
 ## Tech Stack
 
@@ -77,6 +78,10 @@ A comprehensive Next.js application for managing student engagement, communicati
 4. **Environment Setup**
    Create a `.env.local` file in the root directory:
    ```env
+   # Demo Mode (set to true to bypass Firebase Auth)
+   NEXT_PUBLIC_DEMO_MODE=true
+   
+   # Firebase Configuration (only needed when DEMO_MODE=false)
    NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
    NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
@@ -96,6 +101,32 @@ A comprehensive Next.js application for managing student engagement, communicati
    - You'll be redirected to the login page
    - Create a new account or sign in with existing credentials
    - Access the dashboard after authentication
+
+## Demo Mode
+
+This app supports a **Demo Mode** for quick testing and demonstration purposes.
+
+### How to Enable Demo Mode
+Set the environment variable in your `.env.local` file:
+```env
+NEXT_PUBLIC_DEMO_MODE=true
+```
+
+### Demo Mode Behavior
+- **Authentication**: Any email/password combination will work
+- **User Experience**: Simulates successful login/signup without Firebase
+- **Data**: Uses mock data for all student information
+- **UI Indicator**: Login page shows "Demo Mode Active" badge
+
+### When Demo Mode is OFF (`NEXT_PUBLIC_DEMO_MODE=false`)
+- **Authentication**: Uses real Firebase Auth with your configured project
+- **Requirements**: Valid Firebase configuration and user accounts
+- **Data**: Connects to your Firebase Firestore database
+- **UI Indicator**: Login page shows "Live Firebase Auth" badge
+
+### Use Cases
+- **Demo Mode ON**: Perfect for presentations, quick testing, or when you don't have Firebase set up
+- **Demo Mode OFF**: Use when you want full Firebase integration with real authentication and data storage
 
 ## Project Structure
 

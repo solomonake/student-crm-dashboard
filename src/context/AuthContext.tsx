@@ -8,7 +8,7 @@ import {
   signOut, 
   onAuthStateChanged 
 } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
+import { auth, isDemoMode } from '@/lib/firebase';
 
 interface AuthContextType {
   user: User | null;
@@ -25,12 +25,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if Firebase is properly configured
-    const isDemoMode = process.env.NEXT_PUBLIC_FIREBASE_API_KEY === 'demo-api-key';
-    
     if (isDemoMode) {
       // Demo mode - simulate a logged-in user
-      console.warn('Running in demo mode - Firebase not configured');
+      console.warn('Running in demo mode - Firebase Auth bypassed');
       setUser({ email: 'demo@example.com' } as any);
       setLoading(false);
       return;
@@ -45,10 +42,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const login = async (email: string, password: string) => {
-    const isDemoMode = process.env.NEXT_PUBLIC_FIREBASE_API_KEY === 'demo-api-key';
-    
     if (isDemoMode) {
-      // Demo mode - simulate successful login
+      // Demo mode - simulate successful login with any email/password
       console.log('Demo login:', email);
       setUser({ email } as any);
       return;
@@ -62,10 +57,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signup = async (email: string, password: string) => {
-    const isDemoMode = process.env.NEXT_PUBLIC_FIREBASE_API_KEY === 'demo-api-key';
-    
     if (isDemoMode) {
-      // Demo mode - simulate successful signup
+      // Demo mode - simulate successful signup with any email/password
       console.log('Demo signup:', email);
       setUser({ email } as any);
       return;
@@ -79,8 +72,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const logout = async () => {
-    const isDemoMode = process.env.NEXT_PUBLIC_FIREBASE_API_KEY === 'demo-api-key';
-    
     if (isDemoMode) {
       // Demo mode - simulate logout
       console.log('Demo logout');

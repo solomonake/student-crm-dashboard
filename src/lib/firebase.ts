@@ -2,6 +2,9 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
+// Check if demo mode is enabled
+export const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === 'true';
+
 const firebaseConfig = {
   // Add your Firebase config here
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || 'demo-api-key',
