@@ -33,6 +33,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
+    if (!auth) {
+      console.error('Firebase auth not initialized - check your environment variables');
+      setLoading(false);
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
@@ -47,6 +53,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.log('Demo login:', email);
       setUser({ email } as any);
       return;
+    }
+
+    if (!auth) {
+      throw new Error('Firebase auth not initialized - check your environment variables');
     }
 
     try {
@@ -64,6 +74,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
+    if (!auth) {
+      throw new Error('Firebase auth not initialized - check your environment variables');
+    }
+
     try {
       await createUserWithEmailAndPassword(auth, email, password);
     } catch (error) {
@@ -77,6 +91,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.log('Demo logout');
       setUser(null);
       return;
+    }
+
+    if (!auth) {
+      throw new Error('Firebase auth not initialized - check your environment variables');
     }
 
     try {

@@ -170,25 +170,14 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <div className={`mt-6 p-4 rounded-lg ${isDemoMode ? 'bg-green-50' : 'bg-blue-50'}`}>
-            <h3 className={`text-sm font-medium mb-2 ${isDemoMode ? 'text-green-900' : 'text-blue-900'}`}>
-              {isDemoMode ? 'Demo Mode Active' : 'Authentication Mode'}
-            </h3>
-            <p className={`text-xs ${isDemoMode ? 'text-green-700' : 'text-blue-700'}`}>
-              {isDemoMode ? (
-                <>
-                  <strong>Demo Mode:</strong> Any email/password combination will work.
-                  <br />
-                  <strong>Note:</strong> This bypasses Firebase Auth for quick testing.
-                </>
-              ) : (
-                <>
-                  <strong>Live Firebase Auth:</strong> Real authentication with your Firebase project.
-                  <br />
-                  <strong>Note:</strong> Requires valid Firebase configuration and user accounts.
-                </>
-              )}
-            </p>
+          <div className="mt-6 text-center">
+            {isDemoMode ? (
+              <p className="text-green-600 text-sm">Demo Mode: Any email/password will work.</p>
+            ) : (
+              <p className="text-blue-600 text-sm">
+                Live Firebase Auth: Requires valid Firebase configuration and user accounts.
+              </p>
+            )}
           </div>
         </div>
       </div>
